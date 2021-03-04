@@ -1,21 +1,51 @@
-import React from "react"
+import React, {Fragment} from "react"
 import { NavLink } from "react-router-dom"
+import {connect} from "react-redux";
+import {logoutAuthedUser} from "../actions/authedUser";
 
-export default function Nav () {
+function logout(props) {
+    props.dispatch(logoutAuthedUser())
+}
+
+function Nav (props) {
+
     return (
         <nav className="nav">
             <ul>
-                <li>
-                    <NavLink to="/" exact={true} activeClassName="active">
-                        Home
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/new" activeClassName="active">
-                        New Question
-                    </NavLink>
-                </li>
+                {
+                    props.user
+                        ? (
+                            <Fragment>
+                                <li>
+                                    <NavLink to="/" exact={true} activeClassName="active">
+                                        Home
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/new" activeClassName="active">
+                                        New Question
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/board" activeClassName="active" >
+                                        Leader Board
+                                    </NavLink>
+                                </li>
+                                <li style={{margin: "0 auto"}}>
+                                    Hello {props.user.name}
+                                </li>
+                                <li style={{marginLeft: "auto"}}>
+                                    <NavLink onClick={() => logout(props)} to="/" exact={true} isActive={() => false}>
+                                        Logout
+                                    </NavLink>
+                                </li>
+                            </Fragment>
+                        )
+                        : null
+                }
             </ul>
         </nav>
     )
 }
+
+export default connect()(Nav)

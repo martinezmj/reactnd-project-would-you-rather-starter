@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
-class NewQuestion extends Component {
+class LeaderBoard extends Component {
 
     componentDidMount() {
         // this.props.dispatch(handleInitialData())
@@ -9,7 +9,7 @@ class NewQuestion extends Component {
 
     render() {
         return (
-            <h2>New Question</h2>
+            <h2>Leader Board</h2>
         )
     }
 }
@@ -18,4 +18,4 @@ function mapStateToProps ({  }) {
     return {}
 }
 
-export default connect(mapStateToProps)(NewQuestion)
+export default connect(mapStateToProps)(LeaderBoard)

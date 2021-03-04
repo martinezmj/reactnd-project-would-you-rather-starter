@@ -1,19 +1,37 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
+import {loginAuthedUser} from "../actions/authedUser";
 
 class Login extends Component {
 
+    state = {
+        selected: 0,
+    }
+
     render() {
         return (
-            <Router>
-                <Fragment>
-                    <div>
-                        Login { this.props.userIds.join(", ") }
-                    </div>
-                </Fragment>
-            </Router>
+            <Fragment>
+                <h2>Login</h2>
+                <div>
+                    <select
+                        onChange={(ev) => this.userSelected(ev)}
+                        value={this.state.selected}>
+                        {
+                            this.props.userIds.map((u, i) => (<option key={u} value={i}>{u}</option>))
+                        }
+                    </select>
+                </div>
+                <button onClick={() => this.onSignIn()}>Sign In</button>
+            </Fragment>
         )
+    }
+
+    userSelected(ev) {
+        this.setState({selected: ev.target.value});
+    }
+
+    onSignIn() {
+        this.props.dispatch(loginAuthedUser(this.props.userIds[this.state.selected]))
     }
 }
 

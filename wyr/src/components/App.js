@@ -5,11 +5,12 @@ import Nav from "./Nav"
 import Login from "./Login";
 import NewQuestion from "./NewQuestion";
 import {handleInitialData} from "../actions/init";
+import LeaderBoard from "./LeaderBoard";
+import Home from "./Home";
 
 class App extends Component {
 
     componentDidMount() {
-        console.log("ok")
         this.props.dispatch(handleInitialData())
     }
 
@@ -18,12 +19,17 @@ class App extends Component {
             <Router>
                 <Fragment>
                     <div className="container">
-                        <Nav />
+                        <Nav user={this.props.user}/>
                         {
                             this.props.initialized
                             ? <div>
-                                 <Route path="/" exact component={Login} />
+                                    {
+                                        this.props.user
+                                            ? <Route path="/" exact component={Home} />
+                                            : <Route path="/" exact component={Login} />
+                                    }
                                  <Route path="/new" exact component={NewQuestion} />
+                                 <Route path="/board" exact component={LeaderBoard} />
                               </div>
                             : null
                         }
@@ -34,10 +40,10 @@ class App extends Component {
     }
 }
 
-function mapStateToProps ({ users }) {
-    console.log("heree ", users)
+function mapStateToProps ({ users, authedUser }) {
     return {
         initialized: !!users,
+        user: authedUser ? users[authedUser] : null,
     }
 }
 
