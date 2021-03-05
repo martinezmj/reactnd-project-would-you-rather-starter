@@ -1,21 +1,23 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import QuestionList from "./QuestionList";
 
 class Home extends Component {
 
-    componentDidMount() {
-        // this.props.dispatch(handleInitialData())
-    }
-
     render() {
         return (
-            <h2>Home</h2>
+            <Fragment>
+                <QuestionList user={this.props.user} questions={this.props.questions} />
+            </Fragment>
         )
     }
 }
 
-function mapStateToProps ({  }) {
-    return {}
+function mapStateToProps ({ users, authedUser, questions }) {
+    return {
+        user:  users[authedUser],
+        questions,
+    }
 }
 
 export default connect(mapStateToProps)(Home)

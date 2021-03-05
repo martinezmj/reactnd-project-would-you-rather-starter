@@ -7,6 +7,7 @@ import NewQuestion from "./NewQuestion";
 import {handleInitialData} from "../actions/init";
 import LeaderBoard from "./LeaderBoard";
 import Home from "./Home";
+import Question from "./Question";
 
 class App extends Component {
 
@@ -26,10 +27,11 @@ class App extends Component {
                                     {
                                         this.props.user
                                             ? <Route path="/" exact component={Home} />
-                                            : <Route path="/" exact component={Login} />
+                                            : <Route path="/" component={Login} />
                                     }
                                  <Route path="/new" exact component={NewQuestion} />
                                  <Route path="/board" exact component={LeaderBoard} />
+                                 <Route path='/questions/:id' component={Question} />
                               </div>
                             : null
                         }
