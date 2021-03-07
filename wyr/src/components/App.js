@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react"
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom"
 import { connect } from "react-redux"
 import Nav from "./Nav"
 import Login from "./Login";
@@ -8,6 +8,7 @@ import {handleInitialData} from "../actions/init";
 import LeaderBoard from "./LeaderBoard";
 import Home from "./Home";
 import Question from "./Question";
+import NotFound from "./NotFound";
 
 class App extends Component {
 
@@ -20,18 +21,26 @@ class App extends Component {
             <Router>
                 <Fragment>
                     <div className="container">
-                        <Nav user={this.props.user}/>
+                        <Nav user={this.props.user} />
                         {
-                            this.props.initialized
-                            ? <div>
+                            this.props.initialized ? <div>
+                                <Switch>
                                     {
                                         this.props.user
-                                            ? <Route path="/" exact component={Home} />
-                                            : <Route path="/" component={Login} />
+                                            ?
+                                            <Switch>
+                                                <Route path="/" exact component={Home} />
+                                                <Route path="/new" exact component={NewQuestion} />
+                                                <Route path="/board" exact component={LeaderBoard} />
+                                                <Route path="/questions/:id" exact component={Question} />
+                                                <Route path="/notfound" exact component={NotFound} />
+                                            </Switch>
+                                            : <Switch>
+                                                <Route path="/questions/" component={NotFound} />
+                                                <Route path="/" component={Login} />
+                                            </Switch>
                                     }
-                                 <Route path="/new" exact component={NewQuestion} />
-                                 <Route path="/board" exact component={LeaderBoard} />
-                                 <Route path='/questions/:id' component={Question} />
+                                </Switch>
                               </div>
                             : null
                         }

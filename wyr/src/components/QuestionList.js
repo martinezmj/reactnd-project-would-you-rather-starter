@@ -14,7 +14,7 @@ class QuestionList extends Component {
                 <div>
                     <h2>{this.state.answered ? "Answered" : "Unanswered"}</h2>
                     {this.getQuestions().map((q) =>
-                        (<QuestionListPreview users={this.props.users} question={q} />))}
+                        (<QuestionListPreview users={this.props.users} key={q.id} question={q} />))}
                 </div>
                 <div>
                     <input type="radio" id="answered" name="answered" value="answered" checked={this.state.answered} onChange={(ev) => this.answerTypeChange(ev)} />
