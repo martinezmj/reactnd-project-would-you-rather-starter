@@ -1,8 +1,8 @@
 # Would You Rather...?
 
 ## Running
-npm install
-npm start
+* npm install
+* npm start
 
 ### Usage
 1) Login -- Log in user.
