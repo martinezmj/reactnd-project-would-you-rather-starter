@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
+import React, {Component, Fragment} from 'react'
+import {connect} from 'react-redux'
 import {loginAuthedUser} from "../actions/authedUser";
 
 class Login extends Component {
@@ -35,7 +35,7 @@ class Login extends Component {
     }
 }
 
-function mapStateToProps ({ users }) {
+function mapStateToProps({users}) {
     return {
         userIds: Object.keys(users).map((u) => users[u].id),
     }

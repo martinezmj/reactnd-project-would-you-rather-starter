@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 
 class User extends Component {
 
@@ -9,7 +9,9 @@ class User extends Component {
 
         return (
             <div style={{border: "2px black solid", background: "#ddd", margin: "14px 25px", padding: "8px"}}>
-                <div style={{float: "right"}}><img src={this.props.user.avatarURL} alt="avatar" style={{width: "50px", height: "50px"}}/></div>
+                <div style={{float: "right"}}>
+                    <img src={this.props.user.avatarURL} alt="avatar" style={{width: "50px", height: "50px"}}/>
+                </div>
                 <h2>{this.props.user.name}:</h2>
                 <h3>
                     Asked: {asked}
@@ -23,9 +25,9 @@ class User extends Component {
     }
 }
 
-function mapStateToProps ({ users }, props) {
+function mapStateToProps({users}, props) {
     return {
-        user:  users[props.id],
+        user: users[props.id],
     }
 }
 

@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
+import React, {Component, Fragment} from 'react'
+import {connect} from 'react-redux'
 import QuestionListPreview from "./QuestionListPreview";
 
 class QuestionList extends Component {
@@ -14,12 +14,14 @@ class QuestionList extends Component {
                 <div>
                     <h2>{this.state.answered ? "Answered" : "Unanswered"}</h2>
                     {this.getQuestions().map((q) =>
-                        (<QuestionListPreview users={this.props.users} key={q.id} question={q} />))}
+                        (<QuestionListPreview users={this.props.users} key={q.id} question={q}/>))}
                 </div>
                 <div>
-                    <input type="radio" id="answered" name="answered" value="answered" checked={this.state.answered} onChange={(ev) => this.answerTypeChange(ev)} />
+                    <input type="radio" id="answered" name="answered" value="answered" checked={this.state.answered}
+                           onChange={(ev) => this.answerTypeChange(ev)}/>
                     <label htmlFor="answered">Answered</label>
-                    <input type="radio" id="unanswered" name="unanswered" value="unanswered" checked={!this.state.answered} onChange={(ev) => this.answerTypeChange(ev)}/>
+                    <input type="radio" id="unanswered" name="unanswered" value="unanswered"
+                           checked={!this.state.answered} onChange={(ev) => this.answerTypeChange(ev)}/>
                     <label htmlFor="unanswered">Unanswered</label>
                 </div>
             </Fragment>
@@ -46,7 +48,7 @@ class QuestionList extends Component {
     }
 }
 
-function mapStateToProps ({ users, questions }) {
+function mapStateToProps({users, questions}) {
     return {
         users,
         questions,

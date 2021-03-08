@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import User from "./User";
 
 class LeaderBoard extends Component {
@@ -8,7 +8,7 @@ class LeaderBoard extends Component {
         return (
             <Fragment>
                 <h2>Rankings</h2>
-                {this.orderUsers().map((user) => (<User key={user.id} id={user.id} />))}
+                {this.orderUsers().map((user) => (<User key={user.id} id={user.id}/>))}
             </Fragment>
         )
     }
@@ -25,7 +25,7 @@ class LeaderBoard extends Component {
     }
 }
 
-function mapStateToProps ({ users }) {
+function mapStateToProps({users}) {
     return {
         users,
     }

@@ -13,7 +13,6 @@ import NotFound from "./NotFound";
 class App extends Component {
 
     componentDidMount() {
-        console.log("here ", this.props.user);
         this.props.dispatch(handleInitialData())
     }
 

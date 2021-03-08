@@ -1,5 +1,5 @@
 import React, {Fragment} from "react"
-import { NavLink } from "react-router-dom"
+import {NavLink} from "react-router-dom"
 import {connect} from "react-redux";
 import {logoutAuthedUser} from "../actions/authedUser";
 
@@ -7,7 +7,7 @@ function logout(props) {
     props.dispatch(logoutAuthedUser())
 }
 
-function Nav (props) {
+function Nav(props) {
 
     return (
         <nav className="nav">
@@ -27,7 +27,7 @@ function Nav (props) {
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/leaderboard" activeClassName="active" >
+                                    <NavLink to="/leaderboard" activeClassName="active">
                                         Leader Board
                                     </NavLink>
                                 </li>

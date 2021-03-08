@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {addQuestion} from "../actions/questions";
 import {withRouter} from "react-router-dom";
 
@@ -61,7 +61,7 @@ class NewQuestion extends Component {
     }
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps({authedUser}) {
     return {
         user: authedUser,
     }
