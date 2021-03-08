@@ -1,3 +1,5 @@
+# Would You Rather...?
+
 ## Running
 npm install
 npm start
