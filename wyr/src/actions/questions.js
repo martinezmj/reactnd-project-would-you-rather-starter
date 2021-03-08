@@ -1,5 +1,6 @@
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ANSWER_QUESTION = 'ANSWER_QUESTION'
+export const NEW_QUESTION = 'NEW_QUESTION'
 
 export function receiveQuestions (questions) {
     return {
@@ -14,5 +15,19 @@ export function answerQuestion (authedUser, id, option) {
         authedUser,
         id,
         option,
+    }
+}
+
+export function addQuestion(authedUser, id, optionOne, optionTwo) {
+    return (dispatch) => {
+        dispatch({
+            type: NEW_QUESTION,
+            authedUser,
+            id,
+            optionOne,
+            optionTwo,
+        });
+
+        return Promise.resolve();
     }
 }
