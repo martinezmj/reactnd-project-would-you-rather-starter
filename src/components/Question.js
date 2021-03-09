@@ -1,14 +1,14 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {answerQuestion} from "../actions/questions";
-import {updateUser} from "../actions/users";
+import {updateUserAnswer} from "../actions/users";
 import {Redirect} from "react-router-dom";
 
 class Question extends Component {
 
     answerChange(ev) {
         this.props.dispatch(answerQuestion(this.props.authedUser, this.props.id, ev.target.value));
-        this.props.dispatch(updateUser(this.props.authedUser, this.props.id, ev.target.value));
+        this.props.dispatch(updateUserAnswer(this.props.authedUser, this.props.id, ev.target.value));
     }
 
     answerCountTotal() {
@@ -40,7 +40,9 @@ class Question extends Component {
                 {
                     !!this.props.user.answers[this.props.id]
                         ? (
-                            <Fragment>
+                            <>
+                                <div><img src={users[questions[id].author].avatarURL} alt="avatar"
+                                          style={{width: "50px", height: "50px", float: "right"}}/></div>
                                 <div>Asked by {users[questions[id].author].name}:</div>
                                 <h2>Results</h2>
                                 <h3>
@@ -61,13 +63,13 @@ class Question extends Component {
                                     &nbsp; &nbsp;
                                     {(this.props.user.answers[this.props.id] === "optionTwo") && "<--- Your Answer"}
                                 </h3>
-                            </Fragment>
+                            </>
                         )
                         : (
-                            <Fragment>
-                                <div>{users[questions[id].author].name} asks:</div>
+                            <>
                                 <div><img src={users[questions[id].author].avatarURL} alt="avatar"
-                                          style={{width: "50px", height: "50px"}}/></div>
+                                          style={{width: "50px", height: "50px", float: "right"}}/></div>
+                                <div>{users[questions[id].author].name} asks:</div>
                                 <h3>Would you rather...</h3>
 
                                 <div>
@@ -78,7 +80,7 @@ class Question extends Component {
                                            onChange={(ev) => this.answerChange(ev)}/>
                                     <label htmlFor="optionTwo">{questions[id].optionTwo.text}</label>
                                 </div>
-                            </Fragment>
+                            </>
                         )
                 }
             </div>

@@ -13,7 +13,7 @@ import NotFound from "./NotFound";
 class App extends Component {
 
     componentDidMount() {
-        this.props.dispatch(handleInitialData())
+        this.props.handleInitialData();
     }
 
     render() {
@@ -37,7 +37,6 @@ class App extends Component {
                                                     <Route path="/notfound" exact component={NotFound}/>
                                                 </Switch>
                                                 : <Switch>
-                                                    <Route path="/questions/" component={NotFound}/>
                                                     <Route path="/" component={Login}/>
                                                 </Switch>
                                         }
@@ -59,4 +58,4 @@ function mapStateToProps({users, authedUser}) {
     }
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps, { handleInitialData })(App)

@@ -10,30 +10,18 @@ export default function questions (state = {}, action) {
         case ANSWER_QUESTION :
             return {
                 ...state,
-                [action.id]: {
-                    ...state[action.id],
-                    [action.option]: {
-                        ...state[action.id][action.option],
-                        votes: state[action.id][action.option].votes.concat(action.authedUser),
+                [action.qid]: {
+                    ...state[action.qid],
+                    [action.answer]: {
+                        ...state[action.qid][action.answer],
+                        votes: state[action.qid][action.answer].votes.concat(action.authedUser),
                     }
                 }
             };
         case NEW_QUESTION:
             return {
                 ...state,
-                [action.id]: {
-                    id: action.id,
-                    author: action.authedUser,
-                    timestamp: (new Date()).getTime(),
-                    optionOne: {
-                        votes: [],
-                        text: action.optionOne,
-                    },
-                    optionTwo: {
-                        votes: [],
-                        text: action.optionTwo,
-                    }
-                }
+                [action.question.id]: action.question,
             };
         default :
             return state;

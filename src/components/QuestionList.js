@@ -10,7 +10,7 @@ class QuestionList extends Component {
 
     render() {
         return (
-            <Fragment>
+            <>
                 <div>
                     <h2>{this.state.answered ? "Answered" : "Unanswered"}</h2>
                     {this.getQuestions().map((q) =>
@@ -24,7 +24,7 @@ class QuestionList extends Component {
                            checked={!this.state.answered} onChange={(ev) => this.answerTypeChange(ev)}/>
                     <label htmlFor="unanswered">Unanswered</label>
                 </div>
-            </Fragment>
+            </>
         )
     }
 

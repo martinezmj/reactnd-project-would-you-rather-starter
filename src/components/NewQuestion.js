@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {addQuestion} from "../actions/questions";
 import {withRouter} from "react-router-dom";
+import {updateUserQuestion} from "../actions/users";
 
 class NewQuestion extends Component {
 
@@ -22,13 +23,10 @@ class NewQuestion extends Component {
 
     handleSubmit = (ev) => {
         ev.preventDefault();
-        this.props.dispatch(addQuestion(this.props.user, this.makeId(), this.state.optionOne, this.state.optionTwo)).then(() => {
+        this.props.dispatch(addQuestion(this.props.user, this.state.optionOne, this.state.optionTwo)).then((question) => {
+            this.props.dispatch(updateUserQuestion(this.props.user, question.id));
             this.props.history.push("/");
         });
-    }
-
-    makeId() {
-        return Math.random().toString(20).slice(2);
     }
 
     render() {
